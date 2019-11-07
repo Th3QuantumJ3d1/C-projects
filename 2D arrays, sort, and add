@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+void swap(int *row, int index1, int index2) {
+  int temp = row[index1];
+  row[index1] = row[index2];
+  row[index2] = temp;
+}
+
+void selectionSort(int* row, int n)
+{
+  int i, j, smallestNum;
+  for (i=0; i < n -1; i++)
+  {
+    smallestNum = i;
+    for (j = i + 1; j < n; j++)
+      if (row[j] < row[smallestNum])
+        smallestNum = j;
+
+    swap(row, i, smallestNum);
+  }
+}
+
+int main(void)
+{
+  int matrix[3][4];
+  int i, j;
+  for (i=0; i<=2; i++)
+  {
+    printf("\n Enter numbers for the matrix row %d: \n", i);
+    scanf("%d%d%d%d", &matrix[i][0], &matrix[i][1], &matrix[i][2], &matrix[i][3]);
+  }
+  for (i=0; i<= 2; i++)
+    printf("\n These are the numbers entered for row %d: %d %d %d %d", i, matrix[i][0], matrix[i][1], matrix[i][2], matrix[i][3]);
+  
+  for(j=0; j<3; j++)
+    selectionSort(matrix[j], 4);
+for (i=0; i<= 2; i++)
+    printf("\n These are the selection sorted numbers for row %d: %d %d %d %d", i, matrix[i][0], matrix[i][1], matrix[i][2], matrix[i][3]);
+
+for (i=0; i<=2; i++)
+{
+  int added = matrix[i][0] + matrix[i][1] + matrix[i][2] + matrix[i][3];
+  printf("\n This is line %d added: %d", i, added);
+}
+
+}
